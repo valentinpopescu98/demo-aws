@@ -28,8 +28,6 @@ public class SecurityConfig {
 
     @Value("${api.client.url.ip}")
     private String clientUrlIp;
-    @Value("${api.client.url.dns}")
-    private String clientUrlDns;
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http, JwtAuthFilter jwtFilter) throws Exception {
@@ -58,7 +56,7 @@ public class SecurityConfig {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(List.of(clientUrlIp, clientUrlDns));
+        config.setAllowedOrigins(List.of(clientUrlIp));
         config.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         config.setAllowedHeaders(List.of("*"));
         config.setAllowCredentials(true);
