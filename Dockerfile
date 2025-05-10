@@ -11,6 +11,11 @@ RUN mvn clean package -DskipTests
 # Stage 2: Run app on a small image
 FROM eclipse-temurin:17-jdk-alpine
 
+# Set environment variables for IMDSv2 (metadata endpoint and token)
+ENV AWS_METADATA_SERVICE_ENDPOINT="http://169.254.169.254"
+ENV AWS_METADATA_SERVICE_TIMEOUT="5s"
+ENV AWS_EC2_METADATA_DISABLED="false"
+
 VOLUME /tmp
 WORKDIR /app
 
