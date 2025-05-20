@@ -3,7 +3,6 @@ package com.valentin.file_manager_server.service;
 import com.valentin.file_manager_server.model.AppUser;
 import com.valentin.file_manager_server.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -49,7 +48,6 @@ public class AppUserDetailsService implements UserDetailsService {
             .orElseGet(() -> {
                 AppUser newUser = new AppUser();
                 newUser.setEmail(email);
-                newUser.setPassword(null);
                 newUser.setFromOAuth2(true);
                 return userRepository.save(newUser);
             });
