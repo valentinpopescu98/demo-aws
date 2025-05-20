@@ -53,7 +53,9 @@ public class SecurityConfig {
                         .requestMatchers(HttpMethod.POST, "/upload").authenticated()
                         .requestMatchers(HttpMethod.DELETE, "/delete").authenticated()
                         .requestMatchers(HttpMethod.POST, "/verify-email").hasRole("ADMIN")
-                        .requestMatchers("/login", "/register",
+			.requestMatchers(HttpMethod.GET, "/register").permitAll()
+			.requestMatchers(HttpMethod.POST, "/register").permitAll()
+                        .requestMatchers("/login",
                                 "/oauth2/**", "/login/oauth2/**", "/oauth2/success",
                                 "/css/**", "/js/**").permitAll()
                         .anyRequest().authenticated()
